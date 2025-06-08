@@ -6,23 +6,95 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
+/**
+ * Supported timezones in IANA format.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "supportedTimezones".
+ */
+export type SupportedTimezones =
+  | 'Pacific/Midway'
+  | 'Pacific/Niue'
+  | 'Pacific/Honolulu'
+  | 'Pacific/Rarotonga'
+  | 'America/Anchorage'
+  | 'Pacific/Gambier'
+  | 'America/Los_Angeles'
+  | 'America/Tijuana'
+  | 'America/Denver'
+  | 'America/Phoenix'
+  | 'America/Chicago'
+  | 'America/Guatemala'
+  | 'America/New_York'
+  | 'America/Bogota'
+  | 'America/Caracas'
+  | 'America/Santiago'
+  | 'America/Buenos_Aires'
+  | 'America/Sao_Paulo'
+  | 'Atlantic/South_Georgia'
+  | 'Atlantic/Azores'
+  | 'Atlantic/Cape_Verde'
+  | 'Europe/London'
+  | 'Europe/Berlin'
+  | 'Africa/Lagos'
+  | 'Europe/Athens'
+  | 'Africa/Cairo'
+  | 'Europe/Moscow'
+  | 'Asia/Riyadh'
+  | 'Asia/Dubai'
+  | 'Asia/Baku'
+  | 'Asia/Karachi'
+  | 'Asia/Tashkent'
+  | 'Asia/Calcutta'
+  | 'Asia/Dhaka'
+  | 'Asia/Almaty'
+  | 'Asia/Jakarta'
+  | 'Asia/Bangkok'
+  | 'Asia/Shanghai'
+  | 'Asia/Singapore'
+  | 'Asia/Tokyo'
+  | 'Asia/Seoul'
+  | 'Australia/Brisbane'
+  | 'Australia/Sydney'
+  | 'Pacific/Guam'
+  | 'Pacific/Noumea'
+  | 'Pacific/Auckland'
+  | 'Pacific/Fiji';
+
 export interface Config {
   auth: {
     users: UserAuthOperations;
   };
+  blocks: {};
   collections: {
     users: User;
     media: Media;
+    page: Page;
+    'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
+  collectionsJoins: {};
+  collectionsSelect: {
+    users: UsersSelect<false> | UsersSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
+    page: PageSelect<false> | PageSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+  };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
   globals: {};
+  globalsSelect: {};
   locale: null;
   user: User & {
     collection: 'users';
+  };
+  jobs: {
+    tasks: unknown;
+    workflows: unknown;
   };
 }
 export interface UserAuthOperations {
@@ -48,7 +120,7 @@ export interface UserAuthOperations {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -65,7 +137,7 @@ export interface User {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -81,13 +153,329 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page".
+ */
+export interface Page {
+  id: number;
+  title: string;
+  country: 'ke' | 'tz' | 'mz' | 'cbv' | 'stm';
+  'theme color'?: string | null;
+  'core values'?: string | null;
+  /**
+   * Add title and country. Save to autogenerate
+   */
+  url: string;
+  'operating hours'?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  'social links'?:
+    | {
+        url: string;
+        title: string;
+        platform?: ('facebook' | 'instagram' | 'x (formerly twitter)' | 'linkedin' | 'youtube') | null;
+        id?: string | null;
+      }[]
+    | null;
+  seo: {
+    /**
+     * 50 - 60 characters
+     */
+    'meta title': string;
+    /**
+     * 140 - 150 characters
+     */
+    'meta description': string;
+    'search console': string;
+    analytics: string;
+  };
+  navigation: {
+    logo?: (number | null) | Media;
+    menuItems: {
+      'anchor name': string;
+      /**
+       * The ID of the section this menu item links to (without the # symbol)
+       */
+      'anchor id': 'home' | 'about' | 'services' | 'contact' | 'products';
+      style?: ('default' | 'primary' | 'secondary') | null;
+      id?: string | null;
+    }[];
+  };
+  hero?:
+    | {
+        heading: string;
+        excerpt: string;
+        cover: number | Media;
+        type?:
+          | (
+              | 'default'
+              | 'horizontal'
+              | 'vertical'
+              | 'stylised horizontal'
+              | 'alternate vertical'
+              | 'fullscreen'
+              | 'alternate fullscreen'
+              | 'split'
+            )
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'simple-hero';
+      }[]
+    | null;
+  'why choose us'?:
+    | (
+        | {
+            title: string;
+            description: string;
+            options: {
+              icon: string;
+              title: string;
+              body: string;
+              id?: string | null;
+            }[];
+            colored?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'why-choose-us-grid';
+          }
+        | {
+            title: string;
+            description?: string | null;
+            image?: (number | null) | Media;
+            options: {
+              title: string;
+              description?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'why-choose-us-column';
+          }
+      )[]
+    | null;
+  content?:
+    | {
+        title: string;
+        /**
+         * The ID of the section this menu item links to (without the # symbol)
+         */
+        'anchor id': 'home' | 'about' | 'services' | 'contact' | 'products';
+        body: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        image: number | Media;
+        'text position'?: ('left' | 'right') | null;
+        highlight?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'content-with-media';
+      }[]
+    | null;
+  'call to action'?:
+    | (
+        | {
+            heading: string;
+            description: string;
+            buttonText: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'simple-call-to-action';
+          }
+        | {
+            title: string;
+            body: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            images: {
+              image?: (number | null) | Media;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'image-grid-cta';
+          }
+        | {
+            title: string;
+            body: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            images: {
+              image?: (number | null) | Media;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'two-image-cta';
+          }
+      )[]
+    | null;
+  contact?:
+    | (
+        | {
+            title: string;
+            contact: {
+              phone: {
+                number: string;
+                type?: ('mobile' | 'whatsapp' | 'telephone') | null;
+                id?: string | null;
+              }[];
+              email: {
+                email: string;
+                id?: string | null;
+              }[];
+            };
+            location: {
+              address: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              iframe: string;
+            };
+            direction?: ('vertical' | 'horizontal') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'simple-contact';
+          }
+        | {
+            title: string;
+            contact: {
+              phone: {
+                number: string;
+                type?: ('mobile' | 'whatsapp' | 'telephone') | null;
+                id?: string | null;
+              }[];
+              email: {
+                email: string;
+                icon?: string | null;
+                id?: string | null;
+              }[];
+            };
+            location: {
+              locations: {
+                address: {
+                  root: {
+                    type: string;
+                    children: {
+                      type: string;
+                      version: number;
+                      [k: string]: unknown;
+                    }[];
+                    direction: ('ltr' | 'rtl') | null;
+                    format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                    indent: number;
+                    version: number;
+                  };
+                  [k: string]: unknown;
+                };
+                iframe: string;
+                id?: string | null;
+              }[];
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'multi-location-contact';
+          }
+      )[]
+    | null;
+  'footer style'?: ('default' | 'tiny') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-locked-documents".
+ */
+export interface PayloadLockedDocument {
+  id: number;
+  document?:
+    | ({
+        relationTo: 'users';
+        value: number | User;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'page';
+        value: number | Page;
+      } | null);
+  globalSlug?: string | null;
+  user: {
+    relationTo: 'users';
+    value: number | User;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -107,11 +495,299 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page_select".
+ */
+export interface PageSelect<T extends boolean = true> {
+  title?: T;
+  country?: T;
+  'theme color'?: T;
+  'core values'?: T;
+  url?: T;
+  'operating hours'?: T;
+  'social links'?:
+    | T
+    | {
+        url?: T;
+        title?: T;
+        platform?: T;
+        id?: T;
+      };
+  seo?:
+    | T
+    | {
+        'meta title'?: T;
+        'meta description'?: T;
+        'search console'?: T;
+        analytics?: T;
+      };
+  navigation?:
+    | T
+    | {
+        logo?: T;
+        menuItems?:
+          | T
+          | {
+              'anchor name'?: T;
+              'anchor id'?: T;
+              style?: T;
+              id?: T;
+            };
+      };
+  hero?:
+    | T
+    | {
+        'simple-hero'?:
+          | T
+          | {
+              heading?: T;
+              excerpt?: T;
+              cover?: T;
+              type?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  'why choose us'?:
+    | T
+    | {
+        'why-choose-us-grid'?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              options?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              colored?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'why-choose-us-column'?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              image?: T;
+              options?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
+  content?:
+    | T
+    | {
+        'content-with-media'?:
+          | T
+          | {
+              title?: T;
+              'anchor id'?: T;
+              body?: T;
+              image?: T;
+              'text position'?: T;
+              highlight?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  'call to action'?:
+    | T
+    | {
+        'simple-call-to-action'?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              buttonText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'image-grid-cta'?:
+          | T
+          | {
+              title?: T;
+              body?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'two-image-cta'?:
+          | T
+          | {
+              title?: T;
+              body?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
+  contact?:
+    | T
+    | {
+        'simple-contact'?:
+          | T
+          | {
+              title?: T;
+              contact?:
+                | T
+                | {
+                    phone?:
+                      | T
+                      | {
+                          number?: T;
+                          type?: T;
+                          id?: T;
+                        };
+                    email?:
+                      | T
+                      | {
+                          email?: T;
+                          id?: T;
+                        };
+                  };
+              location?:
+                | T
+                | {
+                    address?: T;
+                    iframe?: T;
+                  };
+              direction?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'multi-location-contact'?:
+          | T
+          | {
+              title?: T;
+              contact?:
+                | T
+                | {
+                    phone?:
+                      | T
+                      | {
+                          number?: T;
+                          type?: T;
+                          id?: T;
+                        };
+                    email?:
+                      | T
+                      | {
+                          email?: T;
+                          icon?: T;
+                          id?: T;
+                        };
+                  };
+              location?:
+                | T
+                | {
+                    locations?:
+                      | T
+                      | {
+                          address?: T;
+                          iframe?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
+  'footer style'?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-locked-documents_select".
+ */
+export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
+  document?: T;
+  globalSlug?: T;
+  user?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-preferences_select".
+ */
+export interface PayloadPreferencesSelect<T extends boolean = true> {
+  user?: T;
+  key?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-migrations_select".
+ */
+export interface PayloadMigrationsSelect<T extends boolean = true> {
+  name?: T;
+  batch?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
