@@ -354,7 +354,7 @@ export interface Page {
           }
         | {
             title: string;
-            description: {
+            description?: {
               root: {
                 type: string;
                 children: {
@@ -368,7 +368,7 @@ export interface Page {
                 version: number;
               };
               [k: string]: unknown;
-            };
+            } | null;
             testimonies?:
               | {
                   testimony: {
