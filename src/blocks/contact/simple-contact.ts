@@ -1,6 +1,6 @@
 import { Block } from "payload";
 
-export const SimpleContact: Block = {
+const SimpleContact: Block = {
     slug: 'simple-contact',
     fields: [
         {
@@ -69,3 +69,5 @@ export const SimpleContact: Block = {
         }
     ]
 }
+
+export default SimpleContact

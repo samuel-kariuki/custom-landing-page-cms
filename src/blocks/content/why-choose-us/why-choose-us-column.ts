@@ -1,7 +1,11 @@
 import { Block } from "payload";
 
-export const WhyChooseUsColumn: Block = {
+const WhyChooseUsColumn: Block = {
     slug: 'why-choose-us-column',
+    labels: {
+        singular: 'Why Choose Us - Column',
+        plural: 'Why Choose Us - Column'
+    },
     fields: [
         {
             type: 'text',
@@ -32,3 +36,5 @@ export const WhyChooseUsColumn: Block = {
         }
     ]
 }
+
+export default WhyChooseUsColumn

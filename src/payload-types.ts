@@ -234,76 +234,83 @@ export interface Page {
         blockType: 'simple-hero';
       }[]
     | null;
-  'why choose us'?:
-    | (
-        | {
-            title: string;
-            description: string;
-            options: {
-              icon: string;
-              title: string;
-              body: string;
-              id?: string | null;
-            }[];
-            colored?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'why-choose-us-grid';
-          }
-        | {
-            title: string;
-            description?: string | null;
-            image?: (number | null) | Media;
-            options: {
-              title: string;
-              description?: string | null;
-              id?: string | null;
-            }[];
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'why-choose-us-column';
-          }
-      )[]
-    | null;
   content?:
-    | {
-        title: string;
-        /**
-         * The ID of the section this menu item links to (without the # symbol)
-         */
-        'anchor id': 'home' | 'about' | 'services' | 'contact' | 'products';
-        body: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        };
-        image: number | Media;
-        'text position'?: ('left' | 'right') | null;
-        highlight?: boolean | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'content-with-media';
-      }[]
-    | null;
-  'call to action'?:
     | (
         | {
-            heading: string;
-            description: string;
-            buttonText: string;
+            title: string;
+            /**
+             * The ID of the section this menu item links to (without the # symbol)
+             */
+            'anchor id': 'home' | 'about' | 'services' | 'contact' | 'products';
+            body: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            highlight?: boolean | null;
+            'card grid'?:
+              | {
+                  image?: (number | null) | Media;
+                  title: string;
+                  body: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'simple-call-to-action';
+            blockType: 'content-with-grid';
+          }
+        | {
+            title: string;
+            /**
+             * The ID of the section this menu item links to (without the # symbol)
+             */
+            'anchor id': 'home' | 'about' | 'services' | 'contact' | 'products';
+            body: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            image: number | Media;
+            'text position'?: ('left' | 'right') | null;
+            highlight?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content-with-media';
           }
         | {
             title: string;
@@ -331,6 +338,70 @@ export interface Page {
             blockType: 'image-grid-cta';
           }
         | {
+            heading: string;
+            description: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            buttonText: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'simple-call-to-action';
+          }
+        | {
+            title: string;
+            description: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            testimonies?:
+              | {
+                  testimony: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  };
+                  title: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'simple-testimonial';
+          }
+        | {
             title: string;
             body: {
               root: {
@@ -355,86 +426,72 @@ export interface Page {
             blockName?: string | null;
             blockType: 'two-image-cta';
           }
+        | {
+            title: string;
+            description?: string | null;
+            image?: (number | null) | Media;
+            options: {
+              title: string;
+              description?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'why-choose-us-column';
+          }
+        | {
+            title: string;
+            description: string;
+            options: {
+              icon: string;
+              title: string;
+              body: string;
+              id?: string | null;
+            }[];
+            colored?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'why-choose-us-grid';
+          }
       )[]
     | null;
   contact?:
-    | (
-        | {
-            title: string;
-            contact: {
-              phone: {
-                number: string;
-                type?: ('mobile' | 'whatsapp' | 'telephone') | null;
-                id?: string | null;
-              }[];
-              email: {
-                email: string;
-                id?: string | null;
-              }[];
-            };
-            location: {
-              address: {
-                root: {
-                  type: string;
-                  children: {
-                    type: string;
-                    version: number;
-                    [k: string]: unknown;
-                  }[];
-                  direction: ('ltr' | 'rtl') | null;
-                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                  indent: number;
-                  version: number;
-                };
+    | {
+        title: string;
+        contact: {
+          phone: {
+            number: string;
+            type?: ('mobile' | 'whatsapp' | 'telephone') | null;
+            id?: string | null;
+          }[];
+          email: {
+            email: string;
+            id?: string | null;
+          }[];
+        };
+        location: {
+          address: {
+            root: {
+              type: string;
+              children: {
+                type: string;
+                version: number;
                 [k: string]: unknown;
-              };
-              iframe: string;
-            };
-            direction?: ('vertical' | 'horizontal') | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'simple-contact';
-          }
-        | {
-            title: string;
-            contact: {
-              phone: {
-                number: string;
-                type?: ('mobile' | 'whatsapp' | 'telephone') | null;
-                id?: string | null;
               }[];
-              email: {
-                email: string;
-                icon?: string | null;
-                id?: string | null;
-              }[];
+              direction: ('ltr' | 'rtl') | null;
+              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+              indent: number;
+              version: number;
             };
-            location: {
-              locations: {
-                address: {
-                  root: {
-                    type: string;
-                    children: {
-                      type: string;
-                      version: number;
-                      [k: string]: unknown;
-                    }[];
-                    direction: ('ltr' | 'rtl') | null;
-                    format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                    indent: number;
-                    version: number;
-                  };
-                  [k: string]: unknown;
-                };
-                iframe: string;
-                id?: string | null;
-              }[];
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'multi-location-contact';
-          }
-      )[]
+            [k: string]: unknown;
+          };
+          iframe: string;
+        };
+        direction?: ('vertical' | 'horizontal') | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'simple-contact';
+      }[]
     | null;
   'footer style'?: ('default' | 'tiny') | null;
   updatedAt: string;
@@ -588,23 +645,88 @@ export interface PageSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
-  'why choose us'?:
+  content?:
     | T
     | {
-        'why-choose-us-grid'?:
+        'content-with-grid'?:
           | T
           | {
               title?: T;
-              description?: T;
-              options?:
+              'anchor id'?: T;
+              body?: T;
+              highlight?: T;
+              'card grid'?:
                 | T
                 | {
-                    icon?: T;
+                    image?: T;
                     title?: T;
                     body?: T;
                     id?: T;
                   };
-              colored?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'content-with-media'?:
+          | T
+          | {
+              title?: T;
+              'anchor id'?: T;
+              body?: T;
+              image?: T;
+              'text position'?: T;
+              highlight?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'image-grid-cta'?:
+          | T
+          | {
+              title?: T;
+              body?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'simple-call-to-action'?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              buttonText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'simple-testimonial'?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              testimonies?:
+                | T
+                | {
+                    testimony?: T;
+                    title?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'two-image-cta'?:
+          | T
+          | {
+              title?: T;
+              body?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };
@@ -624,60 +746,20 @@ export interface PageSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-      };
-  content?:
-    | T
-    | {
-        'content-with-media'?:
+        'why-choose-us-grid'?:
           | T
           | {
               title?: T;
-              'anchor id'?: T;
-              body?: T;
-              image?: T;
-              'text position'?: T;
-              highlight?: T;
-              id?: T;
-              blockName?: T;
-            };
-      };
-  'call to action'?:
-    | T
-    | {
-        'simple-call-to-action'?:
-          | T
-          | {
-              heading?: T;
               description?: T;
-              buttonText?: T;
-              id?: T;
-              blockName?: T;
-            };
-        'image-grid-cta'?:
-          | T
-          | {
-              title?: T;
-              body?: T;
-              images?:
+              options?:
                 | T
                 | {
-                    image?: T;
+                    icon?: T;
+                    title?: T;
+                    body?: T;
                     id?: T;
                   };
-              id?: T;
-              blockName?: T;
-            };
-        'two-image-cta'?:
-          | T
-          | {
-              title?: T;
-              body?: T;
-              images?:
-                | T
-                | {
-                    image?: T;
-                    id?: T;
-                  };
+              colored?: T;
               id?: T;
               blockName?: T;
             };
@@ -713,42 +795,6 @@ export interface PageSelect<T extends boolean = true> {
                     iframe?: T;
                   };
               direction?: T;
-              id?: T;
-              blockName?: T;
-            };
-        'multi-location-contact'?:
-          | T
-          | {
-              title?: T;
-              contact?:
-                | T
-                | {
-                    phone?:
-                      | T
-                      | {
-                          number?: T;
-                          type?: T;
-                          id?: T;
-                        };
-                    email?:
-                      | T
-                      | {
-                          email?: T;
-                          icon?: T;
-                          id?: T;
-                        };
-                  };
-              location?:
-                | T
-                | {
-                    locations?:
-                      | T
-                      | {
-                          address?: T;
-                          iframe?: T;
-                          id?: T;
-                        };
-                  };
               id?: T;
               blockName?: T;
             };

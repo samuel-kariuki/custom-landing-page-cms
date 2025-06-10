@@ -1,7 +1,11 @@
 import { Block } from "payload";
 
-export const ImageGridCta: Block = {
+const ImageGridCta: Block = {
     slug: 'image-grid-cta',
+    labels: {
+        singular: 'Image Grid CTA',
+        plural: 'Image Grid CTAs'
+    },
     fields: [
         {
             type: 'text',
@@ -27,3 +31,5 @@ export const ImageGridCta: Block = {
         }
     ]
 }
+
+export default ImageGridCta

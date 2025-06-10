@@ -1,7 +1,7 @@
 import { Block } from "payload";
 import { anchorIds } from "@/utils/anchor-id";
 
-export const ContentWithMedia: Block = {
+const ContentWithMedia: Block = {
     slug: 'content-with-media',
     labels: {
         singular: 'Content with media block',
@@ -40,3 +40,5 @@ export const ContentWithMedia: Block = {
         defaultValue: false
     }]
 }
+
+export default ContentWithMedia

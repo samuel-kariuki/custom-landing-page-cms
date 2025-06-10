@@ -1,17 +1,10 @@
-import { ContentWithMedia } from "@/blocks/content-with-media";
-import { SimpleCallToAction } from "@/blocks/cta/simple-call-to-action";
-import { SimpleHero } from "@/blocks/hero/simple-hero";
 import { CollectionConfig } from "payload";
-import type { Field } from "payload";
-import { anchorIds } from "@/utils/anchor-id";
-import { SimpleContact } from "@/blocks/contact/simple-contact";
-import { MultiLocation } from "@/blocks/contact/multi-location";
-import { ImageGridCta } from "@/blocks/cta/image-grid-cta";
-import { TwoImageCta } from "@/blocks/cta/two-image-cta";
 import { generateUrl } from "@/utils/generate-url";
-import { WhyChooseUsGrid } from "@/blocks/why-choose-us/why-choose-us-grid";
-import { WhyChooseUsColumn } from "@/blocks/why-choose-us/why-choose-us-column";
+
 import { NavigationField } from "./fields/navigation-field";
+import { SimpleHero } from "@/blocks/hero/simple-hero";
+import * as ContentBlocks from "@/blocks/content";
+import * as ContactBlocks from "@/blocks/contact/simple-contact";
 
 export const Page: CollectionConfig = {
     slug: 'page',
@@ -147,29 +140,15 @@ export const Page: CollectionConfig = {
         },
         {
             type: 'blocks',
-            name: 'why choose us',
-            blocks: [WhyChooseUsGrid, WhyChooseUsColumn],
-            maxRows: 1,
-            minRows: 1
-        },
-        {
-            type: 'blocks',
             name: 'content',
-            blocks: [ContentWithMedia],
+            blocks: [...Object.values(ContentBlocks)],
             label: 'Content',
             minRows: 1
         },
         {
             type: 'blocks',
-            name: 'call to action',
-            blocks: [SimpleCallToAction, ImageGridCta, TwoImageCta],
-            minRows: 1,
-            maxRows: 1
-        },
-        {
-            type: 'blocks',
             name: 'contact',
-            blocks: [SimpleContact, MultiLocation],
+            blocks: [...Object.values(ContactBlocks)],
             maxRows: 1,
             minRows: 1
         },

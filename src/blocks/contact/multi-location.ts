@@ -1,6 +1,6 @@
 import { Block } from "payload";
 
-export const MultiLocation: Block = {
+const MultiLocation: Block = {
     slug: 'multi-location-contact',
     fields: [
         {
@@ -76,3 +76,5 @@ export const MultiLocation: Block = {
         }
     ]
 }
+
+export default MultiLocation

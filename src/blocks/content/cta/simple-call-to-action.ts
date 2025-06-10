@@ -1,7 +1,11 @@
 import { Block } from "payload";
 
-export const SimpleCallToAction: Block = {
+const SimpleCallToAction: Block = {
     slug: 'simple-call-to-action',
+    labels: {
+        singular: 'Simple CTA',
+        plural: 'Simple CTAs'
+    },
     fields: [
         {
             name: 'heading',
@@ -10,7 +14,7 @@ export const SimpleCallToAction: Block = {
         },
         {
             name: 'description',
-            type: 'text',
+            type: 'richText',
             required: true
         },
         {
@@ -20,3 +24,5 @@ export const SimpleCallToAction: Block = {
         }
     ]
 }
+
+export default SimpleCallToAction

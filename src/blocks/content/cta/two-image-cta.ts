@@ -1,7 +1,11 @@
 import { Block } from "payload";
 
-export const TwoImageCta: Block = {
+const TwoImageCta: Block = {
     slug: 'two-image-cta',
+    labels: {
+        singular: 'Two Image CTA',
+        plural: 'Two Image CTAs'
+    },
     fields: [
         {
             type: 'text',
@@ -27,3 +31,5 @@ export const TwoImageCta: Block = {
         }
     ]
 }
+
+export default TwoImageCta

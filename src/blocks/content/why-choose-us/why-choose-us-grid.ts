@@ -1,7 +1,11 @@
 import { Block } from "payload";
 
-export const WhyChooseUsGrid: Block = {
+const WhyChooseUsGrid: Block = {
     slug: 'why-choose-us-grid',
+    labels: {
+        singular: 'Why Choose Us - Grid',
+        plural: 'Why Choose Us - Grid'
+    },
     fields: [
         {
             type: 'text',
@@ -45,3 +49,5 @@ export const WhyChooseUsGrid: Block = {
         }
     ]
 }
+
+export default WhyChooseUsGrid
