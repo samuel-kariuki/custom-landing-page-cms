@@ -12,7 +12,7 @@ const WhyChooseUsColumn: Block = {
             name: 'title',
             required: true
         }, {
-            type: 'text',
+            type: 'richText',
             name: 'description',
             required: false,
         }, {
@@ -29,7 +29,7 @@ const WhyChooseUsColumn: Block = {
                 name: 'title',
                 required: true
             }, {
-                type: 'text',
+                type: 'richText',
                 name: 'description',
                 required: false
             }]

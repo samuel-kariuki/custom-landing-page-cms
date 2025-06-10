@@ -13,10 +13,9 @@ const WhyChooseUsGrid: Block = {
             required: true,
         },
         {
-            type: 'text',
+            type: 'richText',
             name: 'description',
             required: true,
-            maxLength: 100
         },
         {
             type: 'array',
@@ -35,10 +34,9 @@ const WhyChooseUsGrid: Block = {
                     required: true,
                     maxLength: 50
                 }, {
-                    type: 'text',
+                    type: 'richText',
                     name: 'body',
                     required: true,
-                    maxLength: 100
                 }
             ]
         },

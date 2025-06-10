@@ -58,7 +58,7 @@ export const Page: CollectionConfig = {
                     required: true,
                     admin: {
                         width: '33%',
-                        description: 'Add title and country. Save to autogenerate',
+                        description: 'Add all required fields and save to autogenerate',
                     },
                     hooks: {
                         beforeValidate: [({ value, siblingData }) => {
@@ -73,25 +73,6 @@ export const Page: CollectionConfig = {
                     admin: {
                         width: '33%'
                     }
-                }
-            ]
-        },
-        {
-            type: 'array',
-            name: 'social links',
-            fields: [
-                {
-                    type: 'text',
-                    name: 'url',
-                    required: true
-                }, {
-                    type: 'text',
-                    name: 'title',
-                    required: true
-                }, {
-                    type: 'select',
-                    name: 'platform',
-                    options: ['facebook', 'instagram', 'x (formerly twitter)', 'linkedin', 'youtube']
                 }
             ]
         },
@@ -113,10 +94,10 @@ export const Page: CollectionConfig = {
                     type: 'text',
                     name: 'meta description',
                     required: true,
-                    minLength: 140,
+                    minLength: 70,
                     maxLength: 150,
                     admin: {
-                        description: '140 - 150 characters'
+                        description: '70 - 150 characters'
                     }
                 },
                 {
@@ -148,9 +129,29 @@ export const Page: CollectionConfig = {
         {
             type: 'blocks',
             name: 'contact',
+            label: 'Contact',
             blocks: [...Object.values(ContactBlocks)],
             maxRows: 1,
             minRows: 1
+        },
+        {
+            type: 'array',
+            name: 'social links',
+            fields: [
+                {
+                    type: 'text',
+                    name: 'url',
+                    required: true
+                }, {
+                    type: 'text',
+                    name: 'title',
+                    required: true
+                }, {
+                    type: 'select',
+                    name: 'platform',
+                    options: ['facebook', 'instagram', 'x (formerly twitter)', 'linkedin', 'youtube']
+                }
+            ]
         },
         {
             type: 'select',

@@ -4,8 +4,8 @@ import { anchorIds } from "@/utils/anchor-id";
 const ContentWithMedia: Block = {
     slug: 'content-with-media',
     labels: {
-        singular: 'Content with media block',
-        plural: 'Content with media blocks'
+        singular: 'Content with Media',
+        plural: 'Content with Media'
     },
     fields: [{
         type: 'text',

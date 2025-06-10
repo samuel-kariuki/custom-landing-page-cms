@@ -162,7 +162,7 @@ export interface Page {
   'theme color'?: string | null;
   'core values'?: string | null;
   /**
-   * Add title and country. Save to autogenerate
+   * Add all required fields and save to autogenerate
    */
   url: string;
   'operating hours'?: {
@@ -180,21 +180,13 @@ export interface Page {
     };
     [k: string]: unknown;
   } | null;
-  'social links'?:
-    | {
-        url: string;
-        title: string;
-        platform?: ('facebook' | 'instagram' | 'x (formerly twitter)' | 'linkedin' | 'youtube') | null;
-        id?: string | null;
-      }[]
-    | null;
   seo: {
     /**
      * 50 - 60 characters
      */
     'meta title': string;
     /**
-     * 140 - 150 characters
+     * 70 - 150 characters
      */
     'meta description': string;
     'search console': string;
@@ -258,6 +250,7 @@ export interface Page {
               [k: string]: unknown;
             };
             highlight?: boolean | null;
+            'card type'?: ('basic' | 'alternating' | 'alternating basic') | null;
             'card grid'?:
               | {
                   image?: (number | null) | Media;
@@ -428,11 +421,39 @@ export interface Page {
           }
         | {
             title: string;
-            description?: string | null;
+            description?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
             image?: (number | null) | Media;
             options: {
               title: string;
-              description?: string | null;
+              description?: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              } | null;
               id?: string | null;
             }[];
             id?: string | null;
@@ -441,11 +462,39 @@ export interface Page {
           }
         | {
             title: string;
-            description: string;
+            description: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
             options: {
               icon: string;
               title: string;
-              body: string;
+              body: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
               id?: string | null;
             }[];
             colored?: boolean | null;
@@ -491,6 +540,14 @@ export interface Page {
         id?: string | null;
         blockName?: string | null;
         blockType: 'simple-contact';
+      }[]
+    | null;
+  'social links'?:
+    | {
+        url: string;
+        title: string;
+        platform?: ('facebook' | 'instagram' | 'x (formerly twitter)' | 'linkedin' | 'youtube') | null;
+        id?: string | null;
       }[]
     | null;
   'footer style'?: ('default' | 'tiny') | null;
@@ -602,14 +659,6 @@ export interface PageSelect<T extends boolean = true> {
   'core values'?: T;
   url?: T;
   'operating hours'?: T;
-  'social links'?:
-    | T
-    | {
-        url?: T;
-        title?: T;
-        platform?: T;
-        id?: T;
-      };
   seo?:
     | T
     | {
@@ -655,6 +704,7 @@ export interface PageSelect<T extends boolean = true> {
               'anchor id'?: T;
               body?: T;
               highlight?: T;
+              'card type'?: T;
               'card grid'?:
                 | T
                 | {
@@ -798,6 +848,14 @@ export interface PageSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+      };
+  'social links'?:
+    | T
+    | {
+        url?: T;
+        title?: T;
+        platform?: T;
+        id?: T;
       };
   'footer style'?: T;
   updatedAt?: T;

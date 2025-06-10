@@ -31,6 +31,12 @@ const ContentWithGrid: Block = {
             defaultValue: false
         },
         {
+            type: 'select',
+            name: 'card type',
+            options: ['basic', 'alternating', 'alternating basic'],
+            defaultValue: 'basic'
+        },
+        {
             type: 'array',
             name: 'card grid',
             minRows: 1,

@@ -15,7 +15,7 @@ const SimpleTestimonial: Block = {
         {
             type: 'richText',
             name: 'description',
-            required: true,
+            required: false,
         },
         {
             type: 'array',
