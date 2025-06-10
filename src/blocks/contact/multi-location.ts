@@ -2,6 +2,10 @@ import { Block } from "payload";
 
 const MultiLocation: Block = {
     slug: 'multi-location-contact',
+    labels: {
+        singular: 'Multi Location Contact',
+        plural: 'Multi Location Contact'
+    },
     fields: [
         {
             name: 'title',

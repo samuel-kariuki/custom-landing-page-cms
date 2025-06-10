@@ -2,6 +2,10 @@ import { Block } from "payload";
 
 const SimpleContact: Block = {
     slug: 'simple-contact',
+    labels: {
+        singular: 'Simple Contact',
+        plural: 'Simple Contact'
+    },
     fields: [
         {
             name: 'title',
