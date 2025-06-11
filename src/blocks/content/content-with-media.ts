@@ -14,8 +14,7 @@ const ContentWithMedia: Block = {
     }, {
         type: 'select',
         name: 'anchor id',
-        required: true,
-        unique: true,
+        required: false,
         options: anchorIds,
         hasMany: false,
         admin: {

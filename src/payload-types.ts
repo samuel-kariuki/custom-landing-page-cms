@@ -233,7 +233,7 @@ export interface Page {
             /**
              * The ID of the section this menu item links to (without the # symbol)
              */
-            'anchor id': 'home' | 'about' | 'services' | 'contact' | 'products';
+            'anchor id'?: ('home' | 'about' | 'services' | 'contact' | 'products') | null;
             body: {
               root: {
                 type: string;
@@ -282,7 +282,7 @@ export interface Page {
             /**
              * The ID of the section this menu item links to (without the # symbol)
              */
-            'anchor id': 'home' | 'about' | 'services' | 'contact' | 'products';
+            'anchor id'?: ('home' | 'about' | 'services' | 'contact' | 'products') | null;
             body: {
               root: {
                 type: string;
