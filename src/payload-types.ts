@@ -139,6 +139,7 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
+  aspect?: ('landscape' | 'portrait' | 'square') | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -299,7 +300,7 @@ export interface Page {
               [k: string]: unknown;
             };
             image: number | Media;
-            'text position'?: ('left' | 'right') | null;
+            position?: ('left' | 'right' | 'bottom' | 'top') | null;
             highlight?: boolean | null;
             id?: string | null;
             blockName?: string | null;
@@ -636,6 +637,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  aspect?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -723,7 +725,7 @@ export interface PageSelect<T extends boolean = true> {
               'anchor id'?: T;
               body?: T;
               image?: T;
-              'text position'?: T;
+              position?: T;
               highlight?: T;
               id?: T;
               blockName?: T;

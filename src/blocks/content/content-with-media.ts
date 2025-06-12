@@ -31,8 +31,9 @@ const ContentWithMedia: Block = {
         required: true
     }, {
         type: 'radio',
-        name: 'text position',
-        options: ['left', 'right']
+        name: 'position',
+        options: ['left', 'right', 'bottom', 'top'],
+        defaultValue: 'right'
     }, {
         type: 'checkbox',
         name: 'highlight',

@@ -103,11 +103,13 @@ export const Page: CollectionConfig = {
                 {
                     type: 'text',
                     name: 'search console',
-                    required: true
+                    required: true,
+                    defaultValue: '<meta name="google-site-verification" content="N0HompzJ25uz2PejDBXT-26yePXEWujgsnsWOcVrNQQ">'
                 }, {
                     type: 'text',
                     name: 'analytics',
-                    required: true
+                    required: true,
+                    defaultValue: '<!-- Google tag (gtag.js) -->'
                 },
             ]
         },

@@ -11,6 +11,12 @@ export const Media: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'aspect',
+      type: 'select',
+      options: ['landscape', 'portrait', 'square'],
+      defaultValue: 'landscape'
+    }
   ],
   upload: true,
 }
