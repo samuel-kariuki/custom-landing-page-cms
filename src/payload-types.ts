@@ -503,6 +503,47 @@ export interface Page {
             blockName?: string | null;
             blockType: 'why-choose-us-grid';
           }
+        | {
+            title: string;
+            description?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            options: {
+              title: string;
+              description?: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              } | null;
+              image?: (number | null) | Media;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'why-choose-us-interactive';
+          }
       )[]
     | null;
   contact?:
@@ -812,6 +853,22 @@ export interface PageSelect<T extends boolean = true> {
                     id?: T;
                   };
               colored?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'why-choose-us-interactive'?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              options?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    image?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };
