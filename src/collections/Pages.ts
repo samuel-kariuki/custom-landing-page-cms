@@ -16,7 +16,7 @@ export const Page: CollectionConfig = {
     admin: {
         useAsTitle: 'title'
     },
-    defaultSort: ['-title', '-number'],
+    defaultSort: ['-number', '-title'],
     fields: [
         {
             type: 'row',
