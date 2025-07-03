@@ -37,9 +37,9 @@ type ParamType = {
 }
 
 const businessSuffixes = [
-    'co', 'company', 'corp', 'corporation', 'ltd', 'limited', 'inc',
+    'co', 'corp', 'corporation', 'ltd', 'limited', 'inc',
     'incorporated', 'llc', 'plc', 'gmbh', 'sa', 'lda', 'sarl',
-    'unipessoal', 'pty', 'pvt', 'associates', 'partners', 'group',
+    'unipessoal', 'pty', 'pvt', 'partners', 'group',
     'holdings', 'enterprises', 'solutions', 'services', 'consulting',
     'consultants', 'lawyers', 'law', 'firm'
 ];

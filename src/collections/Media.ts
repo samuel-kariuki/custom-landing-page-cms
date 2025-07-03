@@ -10,6 +10,24 @@ export const Media: CollectionConfig = {
       name: 'alt',
       type: 'text',
       required: true,
+      hooks: {
+        beforeChange: [
+          ({ siblingData, value }) => {
+            const { filename } = siblingData
+            if (filename) {
+              value = filename
+                .replace(/\.[^/.]+$/, '')
+                .replace(/[-_\.]/g, ' ')
+                .replace(/\b\w/g, (char: string) => char.toUpperCase())
+                .trim()
+
+              console.log('value', value)
+
+              return value
+            }
+          }
+        ]
+      }
     },
     {
       name: 'aspect',
