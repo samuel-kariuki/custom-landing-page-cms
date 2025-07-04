@@ -68,7 +68,7 @@ const SimpleContact: Block = {
         {
             type: 'radio',
             name: 'direction',
-            options: ['vertical', 'horizontal'],
+            options: ['vertical', 'horizontal', 'overlap'],
             defaultValue: 'vertical'
         }
     ]
