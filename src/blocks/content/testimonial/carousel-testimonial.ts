@@ -1,10 +1,10 @@
 import { Block } from "payload";
 
-const SimpleTestimonial: Block = {
-    slug: 'simple-testimonial',
+const CarouselTestimonial: Block = {
+    slug: 'carousel-testimonial',
     labels: {
-        singular: 'Simple Testimonial',
-        plural: 'Simple Testimonials'
+        singular: 'Carousel Testimonial',
+        plural: 'Carousel Testimonials'
     },
     fields: [
         {
@@ -25,7 +25,6 @@ const SimpleTestimonial: Block = {
         {
             type: 'array',
             name: 'testimonies',
-            maxRows: 6,
             fields: [
                 {
                     type: 'richText',
@@ -42,4 +41,4 @@ const SimpleTestimonial: Block = {
     ]
 }
 
-export default SimpleTestimonial
+export default CarouselTestimonial

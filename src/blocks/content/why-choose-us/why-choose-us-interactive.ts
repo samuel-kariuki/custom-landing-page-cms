@@ -15,7 +15,13 @@ const WhyChooseUsInteractive: Block = {
             type: 'richText',
             name: 'description',
             required: false,
-        }, {
+        },
+        {
+            type: 'checkbox',
+            name: 'highlight',
+            defaultValue: false
+        },
+        {
             type: 'array',
             name: 'options',
             required: true,

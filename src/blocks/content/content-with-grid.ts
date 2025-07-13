@@ -22,7 +22,7 @@ const ContentWithGrid: Block = {
         {
             type: 'richText',
             name: 'body',
-            required: true
+            required: false
         },
         {
             type: 'checkbox',
@@ -53,7 +53,7 @@ const ContentWithGrid: Block = {
                 {
                     type: 'richText',
                     name: 'body',
-                    required: true
+                    required: false
                 }
             ]
         }

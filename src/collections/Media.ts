@@ -21,8 +21,6 @@ export const Media: CollectionConfig = {
                 .replace(/\b\w/g, (char: string) => char.toUpperCase())
                 .trim()
 
-              console.log('value', value)
-
               return value
             }
           }
@@ -37,5 +35,5 @@ export const Media: CollectionConfig = {
     }
   ],
   upload: true,
-  folders: true,
+  folders: true
 }

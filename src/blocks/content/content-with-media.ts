@@ -23,7 +23,7 @@ const ContentWithMedia: Block = {
     }, {
         type: 'richText',
         name: 'body',
-        required: true
+        required: false
     }, {
         type: 'upload',
         name: 'image',
