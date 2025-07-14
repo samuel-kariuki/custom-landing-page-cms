@@ -19,7 +19,13 @@ const WhyChooseUsColumn: Block = {
             type: 'upload',
             name: 'image',
             relationTo: 'media'
-        }, {
+        },
+        {
+            type: 'checkbox',
+            name: 'highlight',
+            defaultValue: false
+        },
+        {
             type: 'array',
             name: 'options',
             required: true,

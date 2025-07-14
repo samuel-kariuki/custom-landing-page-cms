@@ -18,6 +18,11 @@ const WhyChooseUsGrid: Block = {
             required: true,
         },
         {
+            type: 'checkbox',
+            name: 'highlight',
+            defaultValue: false
+        },
+        {
             type: 'array',
             name: 'options',
             required: true,
