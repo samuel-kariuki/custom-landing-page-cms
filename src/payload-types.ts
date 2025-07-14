@@ -611,7 +611,7 @@ export interface Page {
           };
           iframe: string;
         };
-        direction?: ('vertical' | 'horizontal') | null;
+        direction?: ('vertical' | 'horizontal' | 'overlap') | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'simple-contact';
