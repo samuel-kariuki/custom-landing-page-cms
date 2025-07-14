@@ -11,3 +11,7 @@ export { default as SimpleCallToAction } from './cta/simple-call-to-action'
 export { default as TwoImageCta } from './cta/two-image-cta'
 
 export { default as SimpleTestimonial } from './testimonial/simple-testimonial'
+<<<<<<< HEAD
+=======
+export { default as CarouselTestimonial } from './testimonial/carousel-testimonial'
+>>>>>>> d909898fe30de14ebea8236dabeb1f1d0f5323ec
