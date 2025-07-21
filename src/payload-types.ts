@@ -264,11 +264,7 @@ export interface Page {
     | (
         | {
             title: string;
-            /**
-             * The ID of the section this menu item links to (without the # symbol)
-             */
-            'anchor id'?: ('home' | 'about' | 'services' | 'contact' | 'products') | null;
-            body: {
+            description?: {
               root: {
                 type: string;
                 children: {
@@ -282,14 +278,11 @@ export interface Page {
                 version: number;
               };
               [k: string]: unknown;
-            };
+            } | null;
             highlight?: boolean | null;
-            'card type'?: ('basic' | 'alternating' | 'alternating basic') | null;
-            'card grid'?:
+            testimonies?:
               | {
-                  image?: (number | null) | Media;
-                  title: string;
-                  body: {
+                  testimony: {
                     root: {
                       type: string;
                       children: {
@@ -304,12 +297,13 @@ export interface Page {
                     };
                     [k: string]: unknown;
                   };
+                  title: string;
                   id?: string | null;
                 }[]
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'content-with-grid';
+            blockType: 'carousel-testimonial';
           }
         | {
             title: string;
@@ -317,7 +311,7 @@ export interface Page {
              * The ID of the section this menu item links to (without the # symbol)
              */
             'anchor id'?: ('home' | 'about' | 'services' | 'contact' | 'products') | null;
-            body: {
+            body?: {
               root: {
                 type: string;
                 children: {
@@ -331,7 +325,56 @@ export interface Page {
                 version: number;
               };
               [k: string]: unknown;
-            };
+            } | null;
+            highlight?: boolean | null;
+            'card type'?: ('basic' | 'alternating' | 'alternating basic') | null;
+            'card grid'?:
+              | {
+                  image?: (number | null) | Media;
+                  title: string;
+                  body?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content-with-grid';
+          }
+        | {
+            title: string;
+            /**
+             * The ID of the section this menu item links to (without the # symbol)
+             */
+            'anchor id'?: ('home' | 'about' | 'services' | 'contact' | 'products') | null;
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
             image: number | Media;
             position?: ('left' | 'right' | 'bottom' | 'top') | null;
             highlight?: boolean | null;
@@ -403,6 +446,7 @@ export interface Page {
               };
               [k: string]: unknown;
             } | null;
+            highlight?: boolean | null;
             testimonies?:
               | {
                   testimony: {
@@ -427,6 +471,48 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'simple-testimonial';
+          }
+        | {
+            title: string;
+            /**
+             * The ID of the section this menu item links to (without the # symbol)
+             */
+            'anchor id'?: ('home' | 'about' | 'services' | 'contact' | 'products') | null;
+            excerpt: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            body: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            image: number | Media;
+            highlight?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'symbiotic-about';
           }
         | {
             title: string;
@@ -471,6 +557,7 @@ export interface Page {
               [k: string]: unknown;
             } | null;
             image?: (number | null) | Media;
+            highlight?: boolean | null;
             options: {
               title: string;
               description?: {
@@ -511,6 +598,7 @@ export interface Page {
               };
               [k: string]: unknown;
             };
+            highlight?: boolean | null;
             options: {
               icon: string;
               title: string;
@@ -553,6 +641,7 @@ export interface Page {
               };
               [k: string]: unknown;
             } | null;
+            highlight?: boolean | null;
             options: {
               title: string;
               description?: {
@@ -626,6 +715,14 @@ export interface Page {
       }[]
     | null;
   'footer style'?: ('default' | 'tiny') | null;
+  /**
+   * Add all required fields and save to autogenerate
+   */
+  'Parent URL': string;
+  /**
+   * Add all required fields and save to autogenerate
+   */
+  'Company Name': string;
   updatedAt: string;
   createdAt: string;
 }
@@ -779,6 +876,22 @@ export interface PageSelect<T extends boolean = true> {
   content?:
     | T
     | {
+        'carousel-testimonial'?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              highlight?: T;
+              testimonies?:
+                | T
+                | {
+                    testimony?: T;
+                    title?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
         'content-with-grid'?:
           | T
           | {
@@ -838,6 +951,7 @@ export interface PageSelect<T extends boolean = true> {
           | {
               title?: T;
               description?: T;
+              highlight?: T;
               testimonies?:
                 | T
                 | {
@@ -845,6 +959,18 @@ export interface PageSelect<T extends boolean = true> {
                     title?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        'symbiotic-about'?:
+          | T
+          | {
+              title?: T;
+              'anchor id'?: T;
+              excerpt?: T;
+              body?: T;
+              image?: T;
+              highlight?: T;
               id?: T;
               blockName?: T;
             };
@@ -868,6 +994,7 @@ export interface PageSelect<T extends boolean = true> {
               title?: T;
               description?: T;
               image?: T;
+              highlight?: T;
               options?:
                 | T
                 | {
@@ -883,6 +1010,7 @@ export interface PageSelect<T extends boolean = true> {
           | {
               title?: T;
               description?: T;
+              highlight?: T;
               options?:
                 | T
                 | {
@@ -900,6 +1028,7 @@ export interface PageSelect<T extends boolean = true> {
           | {
               title?: T;
               description?: T;
+              highlight?: T;
               options?:
                 | T
                 | {
@@ -956,6 +1085,8 @@ export interface PageSelect<T extends boolean = true> {
         id?: T;
       };
   'footer style'?: T;
+  'Parent URL'?: T;
+  'Company Name'?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -1,5 +1,5 @@
 import { CollectionConfig } from "payload";
-import { generateUrl } from "@/utils/generate-url";
+import { generateUrl, getParentUrl, getCompanyName } from "@/utils/generate-url";
 
 import { NavigationField } from "./fields/navigation-field";
 import { SimpleHero } from "@/blocks/hero/simple-hero";
@@ -125,6 +125,36 @@ export const Page: CollectionConfig = {
             name: 'footer style',
             options: ['default', 'tiny'],
             defaultValue: 'default'
+        },
+        {
+            type: 'text',
+            name: 'Parent URL',
+            required: true,
+            admin: {
+                width: '33%',
+                description: 'Add all required fields and save to autogenerate',
+            },
+            hooks: {
+                beforeValidate: [({ value, siblingData }) => {
+                    value = getParentUrl({ country: siblingData.country })
+                    return value
+                }]
+            }
+        },
+        {
+            type: 'text',
+            name: 'Company Name',
+            required: true,
+            admin: {
+                width: '33%',
+                description: 'Add all required fields and save to autogenerate',
+            },
+            hooks: {
+                beforeValidate: [({ value, siblingData }) => {
+                    value = getCompanyName({ country: siblingData.country })
+                    return value
+                }]
+            }
         }
     ]
 }

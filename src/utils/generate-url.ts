@@ -32,7 +32,7 @@
 import { companyDomains } from "./company-info";
 
 type ParamType = {
-    title: string;
+    title?: string;
     country: string;
 }
 
@@ -44,8 +44,25 @@ const businessSuffixes = [
     'consultants', 'lawyers', 'law', 'firm'
 ];
 
+
+const parentUrls: Record<string, string> = {
+    ke: 'https://www.yellowpageskenya.com/',
+    cv: 'https://www.paginasamarelas.cv/',
+    mz: 'https://www.paginasamarelas.co.mz/',
+    tz: 'https://www.yellow.co.tz/',
+    st: 'https://www.paginasamarelas.st/',
+};
+
+const companyNames: Record<string, string> = {
+    ke: 'Yellow Pages Kenya',
+    cv: 'Páginas Amarelas de Cabo Verde',
+    mz: 'Páginas Amarelas Moçambique',
+    tz: 'Yellow Tanzania',
+    st: 'Páginas Amarelas São Tomé',
+};
+
 export function generateUrl({ title, country }: ParamType): string {
-    const subdomain = title
+    const subdomain = title!
         .toLowerCase()
         // Replace & with 'and' first
         .replace(/&/g, ' and ')
@@ -66,4 +83,20 @@ export function generateUrl({ title, country }: ParamType): string {
     const url = `https://${subdomain}.${companyDomains[country]}`
 
     return url
+}
+
+export function getParentUrl({ country }: ParamType): string {
+    const url = parentUrls[country.toLowerCase()];
+    if (!url) {
+        throw new Error(`No URL found for country code: ${country}`);
+    }
+    return url;
+}
+
+export function getCompanyName({ country }: ParamType): string {
+    const name = companyNames[country.toLowerCase()];
+    if (!name) {
+        throw new Error(`No company name found for country code: ${country}`);
+    }
+    return name;
 }
