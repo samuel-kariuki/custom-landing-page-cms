@@ -17,39 +17,50 @@ export const NavigationField: Field = {
             minRows: 1,
             fields: [
                 {
-                    type: 'text',
-                    name: 'anchor name',
-                    required: true,
-                },
-                {
-                    type: 'select',
-                    name: 'anchor id',
-                    required: true,
-                    label: 'Anchor ID',
-                    options: anchorIds,
-                    hasMany: false,
-                    admin: {
-                        description: 'The ID of the section this menu item links to (without the # symbol)'
-                    }
-                },
-                {
-                    type: 'select',
-                    name: 'style',
-                    options: [
+                    type: 'row',
+                    fields: [
                         {
-                            label: 'Default',
-                            value: 'default'
+                            type: 'text',
+                            name: 'anchor name',
+                            required: true,
+                            admin: {
+                                width: '33%',
+                            },
                         },
                         {
-                            label: 'Primary',
-                            value: 'primary'
+                            type: 'select',
+                            name: 'anchor id',
+                            required: true,
+                            label: 'Anchor ID',
+                            options: anchorIds,
+                            hasMany: false,
+                            admin: {
+                                width: '33%',
+                                description: 'The ID of the section this menu item links to (without the # symbol)'
+                            }
                         },
                         {
-                            label: 'Secondary',
-                            value: 'secondary'
-                        }
-                    ],
-                    defaultValue: 'default'
+                            type: 'select',
+                            name: 'style',
+                            admin: {
+                                width: '33%',
+                            },
+                            options: [
+                                {
+                                    label: 'Default',
+                                    value: 'default'
+                                },
+                                {
+                                    label: 'Primary',
+                                    value: 'primary'
+                                },
+                                {
+                                    label: 'Secondary',
+                                    value: 'secondary'
+                                }
+                            ],
+                            defaultValue: 'default'
+                        }]
                 }
             ]
         }

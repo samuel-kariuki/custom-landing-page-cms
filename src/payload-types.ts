@@ -718,7 +718,7 @@ export interface Page {
   /**
    * Add all required fields and save to autogenerate
    */
-  'Parent URL': string;
+  'Company url': string;
   /**
    * Add all required fields and save to autogenerate
    */
@@ -1085,7 +1085,7 @@ export interface PageSelect<T extends boolean = true> {
         id?: T;
       };
   'footer style'?: T;
-  'Parent URL'?: T;
+  'Company url'?: T;
   'Company Name'?: T;
   updatedAt?: T;
   createdAt?: T;

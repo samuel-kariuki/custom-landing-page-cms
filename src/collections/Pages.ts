@@ -62,8 +62,9 @@ export const Page: CollectionConfig = {
                         description: 'Add all required fields and save to autogenerate',
                     },
                     hooks: {
-                        beforeValidate: [({ value, siblingData }) => {
-                            value = generateUrl({ title: siblingData.title, country: siblingData.country })
+                        beforeValidate: [({ value, siblingData, originalDoc }) => {
+                            const countryChanged = originalDoc?.country !== siblingData.country;
+                            if (!value || countryChanged) value = generateUrl({ title: siblingData.title, country: siblingData.country })
                             return value
                         }]
                     }
@@ -121,40 +122,50 @@ export const Page: CollectionConfig = {
             ]
         },
         {
-            type: 'select',
-            name: 'footer style',
-            options: ['default', 'tiny'],
-            defaultValue: 'default'
+            type: 'row',
+            fields: [
+                {
+                    type: 'select',
+                    name: 'footer style',
+                    options: ['default', 'tiny'],
+                    defaultValue: 'default',
+                    admin: {
+                        width: '33%',
+                    }
+                },
+                {
+                    type: 'text',
+                    name: 'Company url',
+                    required: true,
+                    admin: {
+                        width: '33%',
+                        description: 'Add all required fields and save to autogenerate',
+                    },
+                    hooks: {
+                        beforeValidate: [({ value, siblingData, originalDoc }) => {
+                            const countryChanged = originalDoc?.country !== siblingData.country;
+                            if (!value || countryChanged) value = getParentUrl({ country: siblingData.country })
+                            return value
+                        }]
+                    }
+                },
+                {
+                    type: 'text',
+                    name: 'Company Name',
+                    required: true,
+                    admin: {
+                        width: '33%',
+                        description: 'Add all required fields and save to autogenerate',
+                    },
+                    hooks: {
+                        beforeValidate: [({ value, siblingData, originalDoc }) => {
+                            const countryChanged = originalDoc?.country !== siblingData.country;
+                            if (!value || countryChanged) value = getCompanyName({ country: siblingData.country })
+                            return value
+                        }]
+                    }
+                }
+            ]
         },
-        {
-            type: 'text',
-            name: 'Parent URL',
-            required: true,
-            admin: {
-                width: '33%',
-                description: 'Add all required fields and save to autogenerate',
-            },
-            hooks: {
-                beforeValidate: [({ value, siblingData }) => {
-                    value = getParentUrl({ country: siblingData.country })
-                    return value
-                }]
-            }
-        },
-        {
-            type: 'text',
-            name: 'Company Name',
-            required: true,
-            admin: {
-                width: '33%',
-                description: 'Add all required fields and save to autogenerate',
-            },
-            hooks: {
-                beforeValidate: [({ value, siblingData }) => {
-                    value = getCompanyName({ country: siblingData.country })
-                    return value
-                }]
-            }
-        }
     ]
 }
