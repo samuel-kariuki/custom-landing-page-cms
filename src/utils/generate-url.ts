@@ -50,7 +50,7 @@ const parentUrls: Record<string, string> = {
     cv: 'https://www.paginasamarelas.cv/',
     mz: 'https://www.paginasamarelas.co.mz/',
     tz: 'https://www.yellow.co.tz/',
-    st: 'https://www.paginasamarelas.st/',
+    stm: 'https://www.paginasamarelas.st/',
 };
 
 const companyNames: Record<string, string> = {
@@ -58,7 +58,7 @@ const companyNames: Record<string, string> = {
     cv: 'Páginas Amarelas de Cabo Verde',
     mz: 'Páginas Amarelas Moçambique',
     tz: 'Yellow Tanzania',
-    st: 'Páginas Amarelas São Tomé',
+    stm: 'Páginas Amarelas São Tomé',
 };
 
 export function generateUrl({ title, country }: ParamType): string {
