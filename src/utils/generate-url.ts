@@ -47,7 +47,7 @@ const businessSuffixes = [
 
 const parentUrls: Record<string, string> = {
     ke: 'https://www.yellowpageskenya.com/',
-    cv: 'https://www.paginasamarelas.cv/',
+    cbv: 'https://www.paginasamarelas.cv/',
     mz: 'https://www.paginasamarelas.co.mz/',
     tz: 'https://www.yellow.co.tz/',
     stm: 'https://www.paginasamarelas.st/',
@@ -55,7 +55,7 @@ const parentUrls: Record<string, string> = {
 
 const companyNames: Record<string, string> = {
     ke: 'Yellow Pages Kenya',
-    cv: 'Páginas Amarelas de Cabo Verde',
+    cbv: 'Páginas Amarelas de Cabo Verde',
     mz: 'Páginas Amarelas Moçambique',
     tz: 'Yellow Tanzania',
     stm: 'Páginas Amarelas São Tomé',
