@@ -1,4 +1,4 @@
-export const companyUrls = {
+export const companyUrls: { [key: string]: string; } = {
     ke: 'https://www.yellowpageskenya.com/',
     cbv: 'https://www.paginasamarelas.cv/',
     mz: 'https://www.paginasamarelas.co.mz/',
@@ -14,7 +14,7 @@ export const companyDomains: { [key: string]: string; } = {
     stm: 'paginasamarelas.st',
 }
 
-export const companyNames = {
+export const companyNames: { [key: string]: string; } = {
     ke: 'Yellow Pages Kenya',
     cbv: 'Páginas Amarelas de Cabo Verde',
     mz: 'Páginas Amarelas Moçambique',
