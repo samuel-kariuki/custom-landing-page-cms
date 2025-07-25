@@ -117,7 +117,7 @@ export const Page: CollectionConfig = {
                 }, {
                     type: 'select',
                     name: 'platform',
-                    options: ['facebook', 'instagram', 'x (formerly twitter)', 'linkedin', 'youtube']
+                    options: ['facebook', 'instagram', 'x (formerly twitter)', 'linkedin', 'youtube', 'pinterest', 'tiktok', 'telegram', 'whatsapp'],
                 }
             ]
         },
