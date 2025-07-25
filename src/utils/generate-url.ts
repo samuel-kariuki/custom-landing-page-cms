@@ -29,7 +29,7 @@
  * generateUrl("Global Tech Solutions Group") // returns "globaltech"
  */
 
-import { companyDomains } from "./company-info";
+import { companyDomains, companyNames, companyUrls } from "./company-info";
 
 type ParamType = {
     title?: string;
@@ -43,23 +43,6 @@ const businessSuffixes = [
     'holdings', 'enterprises', 'solutions', 'services', 'consulting',
     'consultants', 'lawyers', 'law', 'firm'
 ];
-
-
-const parentUrls: Record<string, string> = {
-    ke: 'https://www.yellowpageskenya.com/',
-    cbv: 'https://www.paginasamarelas.cv/',
-    mz: 'https://www.paginasamarelas.co.mz/',
-    tz: 'https://www.yellow.co.tz/',
-    stm: 'https://www.paginasamarelas.st/',
-};
-
-const companyNames: Record<string, string> = {
-    ke: 'Yellow Pages Kenya',
-    cbv: 'Páginas Amarelas de Cabo Verde',
-    mz: 'Páginas Amarelas Moçambique',
-    tz: 'Yellow Tanzania',
-    stm: 'Páginas Amarelas São Tomé',
-};
 
 export function generateUrl({ title, country }: ParamType): string {
     const subdomain = title!
@@ -86,7 +69,7 @@ export function generateUrl({ title, country }: ParamType): string {
 }
 
 export function getParentUrl({ country }: ParamType): string {
-    const url = parentUrls[country.toLowerCase()];
+    const url = companyUrls[country.toLowerCase()];
     if (!url) {
         throw new Error(`No URL found for country code: ${country}`);
     }
