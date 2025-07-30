@@ -2,8 +2,8 @@ import { Block } from 'payload'
 import { anchorIds } from '@/utils/anchor-id'
 import { lexicalHTMLField } from '@payloadcms/richtext-lexical'
 
-const SymbioticAbout: Block = {
-    slug: 'symbiotic-about',
+const RoundedAbout: Block = {
+    slug: 'rounded-about',
     fields: [
         {
             type: 'text',
@@ -52,4 +52,4 @@ const SymbioticAbout: Block = {
     ]
 }
 
-export default SymbioticAbout
+export default RoundedAbout

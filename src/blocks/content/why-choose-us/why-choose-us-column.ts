@@ -1,3 +1,4 @@
+import { lexicalHTMLField } from "@payloadcms/richtext-lexical";
 import { Block } from "payload";
 
 const WhyChooseUsColumn: Block = {
@@ -15,7 +16,12 @@ const WhyChooseUsColumn: Block = {
             type: 'richText',
             name: 'description',
             required: false,
-        }, {
+        },
+        lexicalHTMLField({
+            htmlFieldName: 'description_html',
+            lexicalFieldName: 'description',
+        }),
+        {
             type: 'upload',
             name: 'image',
             relationTo: 'media'
@@ -38,7 +44,12 @@ const WhyChooseUsColumn: Block = {
                 type: 'richText',
                 name: 'description',
                 required: false
-            }]
+            },
+            lexicalHTMLField({
+                htmlFieldName: 'description_html',
+                lexicalFieldName: 'description',
+            }),
+            ]
         }
     ]
 }

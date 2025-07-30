@@ -1,3 +1,4 @@
+import { lexicalHTMLField } from "@payloadcms/richtext-lexical";
 import { Block } from "payload";
 
 const SimpleCallToAction: Block = {
@@ -17,6 +18,10 @@ const SimpleCallToAction: Block = {
             type: 'richText',
             required: true
         },
+        lexicalHTMLField({
+            htmlFieldName: 'descritpion_html',
+            lexicalFieldName: 'description',
+        }),
         {
             name: 'buttonText',
             type: 'text',

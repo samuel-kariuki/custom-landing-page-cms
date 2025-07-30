@@ -1,3 +1,4 @@
+import { lexicalHTMLField } from "@payloadcms/richtext-lexical";
 import { Block } from "payload";
 
 const MultiLocation: Block = {
@@ -73,7 +74,11 @@ const MultiLocation: Block = {
                             name: 'iframe',
                             type: 'text',
                             required: true
-                        }
+                        },
+                        lexicalHTMLField({
+                            htmlFieldName: 'address_html',
+                            lexicalFieldName: 'address',
+                        }),
                     ]
                 }
             ]

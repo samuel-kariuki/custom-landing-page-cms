@@ -214,6 +214,7 @@ export interface Page {
     };
     [k: string]: unknown;
   } | null;
+  operatingHours_html?: string | null;
   seo: {
     /**
      * 50 - 60 characters
@@ -239,26 +240,53 @@ export interface Page {
     }[];
   };
   hero?:
-    | {
-        heading: string;
-        excerpt: string;
-        cover: number | Media;
-        type?:
-          | (
-              | 'default'
-              | 'horizontal'
-              | 'vertical'
-              | 'stylised horizontal'
-              | 'alternate vertical'
-              | 'fullscreen'
-              | 'alternate fullscreen'
-              | 'split'
-            )
-          | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'simple-hero';
-      }[]
+    | (
+        | {
+            heading: string;
+            excerpt: string;
+            cover: number | Media;
+            type?:
+              | (
+                  | 'default'
+                  | 'horizontal'
+                  | 'vertical'
+                  | 'stylised horizontal'
+                  | 'alternate vertical'
+                  | 'fullscreen'
+                  | 'alternate fullscreen'
+                  | 'split'
+                )
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'simple-hero';
+          }
+        | {
+            heading: string;
+            excerpt: string;
+            slides?:
+              | {
+                  cover: number | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            type?:
+              | (
+                  | 'default'
+                  | 'horizontal'
+                  | 'vertical'
+                  | 'stylised horizontal'
+                  | 'alternate vertical'
+                  | 'fullscreen'
+                  | 'alternate fullscreen'
+                  | 'split'
+                )
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'slideshow-hero';
+          }
+      )[]
     | null;
   content?:
     | (
@@ -279,6 +307,7 @@ export interface Page {
               };
               [k: string]: unknown;
             } | null;
+            description_html?: string | null;
             highlight?: boolean | null;
             testimonies?:
               | {
@@ -298,6 +327,7 @@ export interface Page {
                     [k: string]: unknown;
                   };
                   title: string;
+                  testimony_html?: string | null;
                   id?: string | null;
                 }[]
               | null;
@@ -326,6 +356,7 @@ export interface Page {
               };
               [k: string]: unknown;
             } | null;
+            body_html?: string | null;
             highlight?: boolean | null;
             'card type'?: ('basic' | 'alternating' | 'alternating basic') | null;
             'card grid'?:
@@ -347,6 +378,7 @@ export interface Page {
                     };
                     [k: string]: unknown;
                   } | null;
+                  body_html?: string | null;
                   id?: string | null;
                 }[]
               | null;
@@ -375,6 +407,7 @@ export interface Page {
               };
               [k: string]: unknown;
             } | null;
+            body_html?: string | null;
             image: number | Media;
             position?: ('left' | 'right' | 'bottom' | 'top') | null;
             highlight?: boolean | null;
@@ -399,6 +432,7 @@ export interface Page {
               };
               [k: string]: unknown;
             };
+            body_html?: string | null;
             images: {
               image?: (number | null) | Media;
               id?: string | null;
@@ -406,6 +440,50 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'image-grid-cta';
+          }
+        | {
+            title: string;
+            /**
+             * The ID of the section this menu item links to (without the # symbol)
+             */
+            'anchor id'?: ('home' | 'about' | 'services' | 'contact' | 'products') | null;
+            excerpt: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            excerpt_html?: string | null;
+            body: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            body_html?: string | null;
+            image: number | Media;
+            highlight?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'rounded-about';
           }
         | {
             heading: string;
@@ -424,6 +502,7 @@ export interface Page {
               };
               [k: string]: unknown;
             };
+            descritpion_html?: string | null;
             buttonText: string;
             id?: string | null;
             blockName?: string | null;
@@ -446,6 +525,7 @@ export interface Page {
               };
               [k: string]: unknown;
             } | null;
+            description_html?: string | null;
             highlight?: boolean | null;
             testimonies?:
               | {
@@ -465,6 +545,7 @@ export interface Page {
                     [k: string]: unknown;
                   };
                   title: string;
+                  testimony_html?: string | null;
                   id?: string | null;
                 }[]
               | null;
@@ -493,6 +574,7 @@ export interface Page {
               };
               [k: string]: unknown;
             };
+            excerpt_html?: string | null;
             body: {
               root: {
                 type: string;
@@ -508,6 +590,7 @@ export interface Page {
               };
               [k: string]: unknown;
             };
+            body_html?: string | null;
             image: number | Media;
             highlight?: boolean | null;
             id?: string | null;
@@ -531,6 +614,7 @@ export interface Page {
               };
               [k: string]: unknown;
             };
+            body_html?: string | null;
             images: {
               image?: (number | null) | Media;
               id?: string | null;
@@ -556,6 +640,7 @@ export interface Page {
               };
               [k: string]: unknown;
             } | null;
+            description_html?: string | null;
             image?: (number | null) | Media;
             highlight?: boolean | null;
             options: {
@@ -575,6 +660,7 @@ export interface Page {
                 };
                 [k: string]: unknown;
               } | null;
+              description_html?: string | null;
               id?: string | null;
             }[];
             id?: string | null;
@@ -598,6 +684,7 @@ export interface Page {
               };
               [k: string]: unknown;
             };
+            description_html?: string | null;
             highlight?: boolean | null;
             options: {
               icon: string;
@@ -617,6 +704,7 @@ export interface Page {
                 };
                 [k: string]: unknown;
               };
+              body_html?: string | null;
               id?: string | null;
             }[];
             colored?: boolean | null;
@@ -641,6 +729,7 @@ export interface Page {
               };
               [k: string]: unknown;
             } | null;
+            description_html?: string | null;
             highlight?: boolean | null;
             options: {
               title: string;
@@ -659,6 +748,7 @@ export interface Page {
                 };
                 [k: string]: unknown;
               } | null;
+              description_html?: string | null;
               image?: (number | null) | Media;
               id?: string | null;
             }[];
@@ -699,6 +789,7 @@ export interface Page {
             [k: string]: unknown;
           };
           iframe: string;
+          address_html?: string | null;
         };
         direction?: ('vertical' | 'horizontal' | 'overlap') | null;
         id?: string | null;
@@ -710,7 +801,19 @@ export interface Page {
     | {
         url: string;
         title: string;
-        platform?: ('facebook' | 'instagram' | 'x (formerly twitter)' | 'linkedin' | 'youtube') | null;
+        platform?:
+          | (
+              | 'facebook'
+              | 'instagram'
+              | 'x (formerly twitter)'
+              | 'linkedin'
+              | 'youtube'
+              | 'pinterest'
+              | 'tiktok'
+              | 'telegram'
+              | 'whatsapp'
+            )
+          | null;
         id?: string | null;
       }[]
     | null;
@@ -838,6 +941,7 @@ export interface PageSelect<T extends boolean = true> {
   'core values'?: T;
   url?: T;
   'operating hours'?: T;
+  operatingHours_html?: T;
   seo?:
     | T
     | {
@@ -872,6 +976,21 @@ export interface PageSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        'slideshow-hero'?:
+          | T
+          | {
+              heading?: T;
+              excerpt?: T;
+              slides?:
+                | T
+                | {
+                    cover?: T;
+                    id?: T;
+                  };
+              type?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   content?:
     | T
@@ -881,12 +1000,14 @@ export interface PageSelect<T extends boolean = true> {
           | {
               title?: T;
               description?: T;
+              description_html?: T;
               highlight?: T;
               testimonies?:
                 | T
                 | {
                     testimony?: T;
                     title?: T;
+                    testimony_html?: T;
                     id?: T;
                   };
               id?: T;
@@ -898,6 +1019,7 @@ export interface PageSelect<T extends boolean = true> {
               title?: T;
               'anchor id'?: T;
               body?: T;
+              body_html?: T;
               highlight?: T;
               'card type'?: T;
               'card grid'?:
@@ -906,6 +1028,7 @@ export interface PageSelect<T extends boolean = true> {
                     image?: T;
                     title?: T;
                     body?: T;
+                    body_html?: T;
                     id?: T;
                   };
               id?: T;
@@ -917,6 +1040,7 @@ export interface PageSelect<T extends boolean = true> {
               title?: T;
               'anchor id'?: T;
               body?: T;
+              body_html?: T;
               image?: T;
               position?: T;
               highlight?: T;
@@ -928,6 +1052,7 @@ export interface PageSelect<T extends boolean = true> {
           | {
               title?: T;
               body?: T;
+              body_html?: T;
               images?:
                 | T
                 | {
@@ -937,11 +1062,26 @@ export interface PageSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        'rounded-about'?:
+          | T
+          | {
+              title?: T;
+              'anchor id'?: T;
+              excerpt?: T;
+              excerpt_html?: T;
+              body?: T;
+              body_html?: T;
+              image?: T;
+              highlight?: T;
+              id?: T;
+              blockName?: T;
+            };
         'simple-call-to-action'?:
           | T
           | {
               heading?: T;
               description?: T;
+              descritpion_html?: T;
               buttonText?: T;
               id?: T;
               blockName?: T;
@@ -951,12 +1091,14 @@ export interface PageSelect<T extends boolean = true> {
           | {
               title?: T;
               description?: T;
+              description_html?: T;
               highlight?: T;
               testimonies?:
                 | T
                 | {
                     testimony?: T;
                     title?: T;
+                    testimony_html?: T;
                     id?: T;
                   };
               id?: T;
@@ -968,7 +1110,9 @@ export interface PageSelect<T extends boolean = true> {
               title?: T;
               'anchor id'?: T;
               excerpt?: T;
+              excerpt_html?: T;
               body?: T;
+              body_html?: T;
               image?: T;
               highlight?: T;
               id?: T;
@@ -979,6 +1123,7 @@ export interface PageSelect<T extends boolean = true> {
           | {
               title?: T;
               body?: T;
+              body_html?: T;
               images?:
                 | T
                 | {
@@ -993,6 +1138,7 @@ export interface PageSelect<T extends boolean = true> {
           | {
               title?: T;
               description?: T;
+              description_html?: T;
               image?: T;
               highlight?: T;
               options?:
@@ -1000,6 +1146,7 @@ export interface PageSelect<T extends boolean = true> {
                 | {
                     title?: T;
                     description?: T;
+                    description_html?: T;
                     id?: T;
                   };
               id?: T;
@@ -1010,6 +1157,7 @@ export interface PageSelect<T extends boolean = true> {
           | {
               title?: T;
               description?: T;
+              description_html?: T;
               highlight?: T;
               options?:
                 | T
@@ -1017,6 +1165,7 @@ export interface PageSelect<T extends boolean = true> {
                     icon?: T;
                     title?: T;
                     body?: T;
+                    body_html?: T;
                     id?: T;
                   };
               colored?: T;
@@ -1028,12 +1177,14 @@ export interface PageSelect<T extends boolean = true> {
           | {
               title?: T;
               description?: T;
+              description_html?: T;
               highlight?: T;
               options?:
                 | T
                 | {
                     title?: T;
                     description?: T;
+                    description_html?: T;
                     image?: T;
                     id?: T;
                   };
@@ -1070,6 +1221,7 @@ export interface PageSelect<T extends boolean = true> {
                 | {
                     address?: T;
                     iframe?: T;
+                    address_html?: T;
                   };
               direction?: T;
               id?: T;

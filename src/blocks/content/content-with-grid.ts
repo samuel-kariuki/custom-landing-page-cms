@@ -1,5 +1,6 @@
 import { Block } from 'payload'
 import { anchorIds } from '@/utils/anchor-id'
+import { lexicalHTMLField } from '@payloadcms/richtext-lexical'
 
 const ContentWithGrid: Block = {
     slug: 'content-with-grid',
@@ -24,6 +25,10 @@ const ContentWithGrid: Block = {
             name: 'body',
             required: false
         },
+        lexicalHTMLField({
+            htmlFieldName: 'body_html',
+            lexicalFieldName: 'body',
+        }),
         {
             type: 'checkbox',
             name: 'highlight',
@@ -54,7 +59,11 @@ const ContentWithGrid: Block = {
                     type: 'richText',
                     name: 'body',
                     required: false
-                }
+                },
+                lexicalHTMLField({
+                    htmlFieldName: 'body_html',
+                    lexicalFieldName: 'body',
+                }),
             ]
         }
     ]

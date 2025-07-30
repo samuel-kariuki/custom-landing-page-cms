@@ -1,11 +1,15 @@
 import { CollectionConfig } from "payload";
 import { generateUrl, getParentUrl, getCompanyName } from "@/utils/generate-url";
+import {
+    lexicalHTMLField,
+} from '@payloadcms/richtext-lexical'
 
 import { NavigationField } from "./fields/navigation-field";
 import { SimpleHero } from "@/blocks/hero/simple-hero";
 import * as ContentBlocks from "@/blocks/content";
 import * as ContactBlocks from "@/blocks/contact/simple-contact";
 import { SEOField } from "./fields/seo";
+import { SlideshowHero } from "@/blocks/hero/slideshow";
 
 export const Page: CollectionConfig = {
     slug: 'page',
@@ -75,7 +79,11 @@ export const Page: CollectionConfig = {
                     admin: {
                         width: '33%'
                     }
-                }
+                },
+                lexicalHTMLField({
+                    htmlFieldName: 'operatingHours_html',
+                    lexicalFieldName: 'operating hours',
+                }),
             ]
         },
         SEOField,
@@ -83,7 +91,7 @@ export const Page: CollectionConfig = {
         {
             type: 'blocks',
             name: 'hero',
-            blocks: [SimpleHero],
+            blocks: [SimpleHero, SlideshowHero],
             maxRows: 1,
             minRows: 1,
         },

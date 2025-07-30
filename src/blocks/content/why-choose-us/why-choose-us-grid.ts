@@ -1,3 +1,4 @@
+import { lexicalHTMLField } from "@payloadcms/richtext-lexical";
 import { Block } from "payload";
 
 const WhyChooseUsGrid: Block = {
@@ -17,6 +18,10 @@ const WhyChooseUsGrid: Block = {
             name: 'description',
             required: true,
         },
+        lexicalHTMLField({
+            htmlFieldName: 'description_html',
+            lexicalFieldName: 'description',
+        }),
         {
             type: 'checkbox',
             name: 'highlight',
@@ -42,7 +47,11 @@ const WhyChooseUsGrid: Block = {
                     type: 'richText',
                     name: 'body',
                     required: true,
-                }
+                },
+                lexicalHTMLField({
+                    htmlFieldName: 'body_html',
+                    lexicalFieldName: 'body',
+                }),
             ]
         },
         {

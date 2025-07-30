@@ -1,6 +1,8 @@
 export { default as ContentWithGrid } from './content-with-grid'
 export { default as ContentWithMedia } from './content-with-media'
+
 export { default as SymbioticAbout } from './about/symbiotic'
+export { default as RoundedAbout } from './about/rounded'
 
 export { default as WhyChooseUsColumn } from './why-choose-us/why-choose-us-column'
 export { default as WhyChooseUsGrid } from './why-choose-us/why-choose-us-grid'

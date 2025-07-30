@@ -1,5 +1,6 @@
 import { Block } from "payload";
 import { anchorIds } from "@/utils/anchor-id";
+import { lexicalHTMLField } from "@payloadcms/richtext-lexical";
 
 const ContentWithMedia: Block = {
     slug: 'content-with-media',
@@ -24,7 +25,12 @@ const ContentWithMedia: Block = {
         type: 'richText',
         name: 'body',
         required: false
-    }, {
+    },
+    lexicalHTMLField({
+        htmlFieldName: 'body_html',
+        lexicalFieldName: 'body',
+    }),
+    {
         type: 'upload',
         name: 'image',
         relationTo: "media",

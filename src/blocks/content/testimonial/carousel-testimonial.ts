@@ -1,3 +1,4 @@
+import { lexicalHTMLField } from "@payloadcms/richtext-lexical";
 import { Block } from "payload";
 
 const CarouselTestimonial: Block = {
@@ -17,6 +18,10 @@ const CarouselTestimonial: Block = {
             name: 'description',
             required: false,
         },
+        lexicalHTMLField({
+            htmlFieldName: 'description_html',
+            lexicalFieldName: 'description',
+        }),
         {
             type: 'checkbox',
             name: 'highlight',
@@ -35,7 +40,11 @@ const CarouselTestimonial: Block = {
                     type: 'text',
                     name: 'title',
                     required: true,
-                }
+                },
+                lexicalHTMLField({
+                    htmlFieldName: 'testimony_html',
+                    lexicalFieldName: 'testimony',
+                }),
             ]
         }
     ]

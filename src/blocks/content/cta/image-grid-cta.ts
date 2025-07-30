@@ -1,3 +1,4 @@
+import { lexicalHTMLField } from "@payloadcms/richtext-lexical";
 import { Block } from "payload";
 
 const ImageGridCta: Block = {
@@ -17,6 +18,10 @@ const ImageGridCta: Block = {
             name: 'body',
             required: true
         },
+        lexicalHTMLField({
+            htmlFieldName: 'body_html',
+            lexicalFieldName: 'body',
+        }),
         {
             type: 'array',
             name: 'images',

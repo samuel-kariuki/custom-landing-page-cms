@@ -1,3 +1,4 @@
+import { lexicalHTMLField } from "@payloadcms/richtext-lexical";
 import { Block } from "payload";
 
 const SimpleContact: Block = {
@@ -62,7 +63,11 @@ const SimpleContact: Block = {
                     name: 'iframe',
                     type: 'text',
                     required: true
-                }
+                },
+                lexicalHTMLField({
+                    htmlFieldName: 'address_html',
+                    lexicalFieldName: 'address',
+                }),
             ]
         },
         {
