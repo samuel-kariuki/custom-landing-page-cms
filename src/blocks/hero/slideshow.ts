@@ -1,6 +1,6 @@
 import { Block } from "payload";
 
-export const SlideshowHero: Block = {
+const SlideshowHero: Block = {
     slug: 'slideshow-hero',
     fields: [
         {
@@ -33,3 +33,5 @@ export const SlideshowHero: Block = {
         }
     ]
 }
+
+export default SlideshowHero

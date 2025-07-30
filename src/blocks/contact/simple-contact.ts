@@ -59,15 +59,16 @@ const SimpleContact: Block = {
                     name: 'address',
                     type: 'richText',
                     required: true,
-                }, {
-                    name: 'iframe',
-                    type: 'text',
-                    required: true
                 },
                 lexicalHTMLField({
                     htmlFieldName: 'address_html',
                     lexicalFieldName: 'address',
                 }),
+                {
+                    name: 'iframe',
+                    type: 'text',
+                    required: true
+                },
             ]
         },
         {

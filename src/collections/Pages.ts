@@ -5,11 +5,10 @@ import {
 } from '@payloadcms/richtext-lexical'
 
 import { NavigationField } from "./fields/navigation-field";
-import { SimpleHero } from "@/blocks/hero/simple-hero";
+import * as HeroBlocks from "@/blocks/hero";
 import * as ContentBlocks from "@/blocks/content";
-import * as ContactBlocks from "@/blocks/contact/simple-contact";
+import * as ContactBlocks from "@/blocks/contact";
 import { SEOField } from "./fields/seo";
-import { SlideshowHero } from "@/blocks/hero/slideshow";
 
 export const Page: CollectionConfig = {
     slug: 'page',
@@ -91,7 +90,7 @@ export const Page: CollectionConfig = {
         {
             type: 'blocks',
             name: 'hero',
-            blocks: [SimpleHero, SlideshowHero],
+            blocks: [...Object.values(HeroBlocks)],
             maxRows: 1,
             minRows: 1,
         },
