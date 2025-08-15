@@ -759,43 +759,85 @@ export interface Page {
       )[]
     | null;
   contact?:
-    | {
-        title: string;
-        contact: {
-          phone: {
-            number: string;
-            type?: ('mobile' | 'whatsapp' | 'telephone') | null;
-            id?: string | null;
-          }[];
-          email: {
-            email: string;
-            id?: string | null;
-          }[];
-        };
-        location: {
-          address: {
-            root: {
-              type: string;
-              children: {
-                type: string;
-                version: number;
-                [k: string]: unknown;
+    | (
+        | {
+            title: string;
+            contact: {
+              phone: {
+                number: string;
+                type?: ('mobile' | 'whatsapp' | 'telephone') | null;
+                id?: string | null;
               }[];
-              direction: ('ltr' | 'rtl') | null;
-              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-              indent: number;
-              version: number;
+              email: {
+                email: string;
+                icon?: string | null;
+                id?: string | null;
+              }[];
             };
-            [k: string]: unknown;
-          };
-          iframe: string;
-          address_html?: string | null;
-        };
-        direction?: ('vertical' | 'horizontal' | 'overlap') | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'simple-contact';
-      }[]
+            location: {
+              locations: {
+                address: {
+                  root: {
+                    type: string;
+                    children: {
+                      type: string;
+                      version: number;
+                      [k: string]: unknown;
+                    }[];
+                    direction: ('ltr' | 'rtl') | null;
+                    format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                    indent: number;
+                    version: number;
+                  };
+                  [k: string]: unknown;
+                };
+                iframe: string;
+                address_html?: string | null;
+                id?: string | null;
+              }[];
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'multi-location-contact';
+          }
+        | {
+            title: string;
+            contact: {
+              phone: {
+                number: string;
+                type?: ('mobile' | 'whatsapp' | 'telephone') | null;
+                id?: string | null;
+              }[];
+              email: {
+                email: string;
+                id?: string | null;
+              }[];
+            };
+            location: {
+              address: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              address_html?: string | null;
+              iframe: string;
+            };
+            direction?: ('vertical' | 'horizontal' | 'overlap') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'simple-contact';
+          }
+      )[]
     | null;
   'social links'?:
     | {
@@ -1195,6 +1237,43 @@ export interface PageSelect<T extends boolean = true> {
   contact?:
     | T
     | {
+        'multi-location-contact'?:
+          | T
+          | {
+              title?: T;
+              contact?:
+                | T
+                | {
+                    phone?:
+                      | T
+                      | {
+                          number?: T;
+                          type?: T;
+                          id?: T;
+                        };
+                    email?:
+                      | T
+                      | {
+                          email?: T;
+                          icon?: T;
+                          id?: T;
+                        };
+                  };
+              location?:
+                | T
+                | {
+                    locations?:
+                      | T
+                      | {
+                          address?: T;
+                          iframe?: T;
+                          address_html?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
         'simple-contact'?:
           | T
           | {
@@ -1220,8 +1299,8 @@ export interface PageSelect<T extends boolean = true> {
                 | T
                 | {
                     address?: T;
-                    iframe?: T;
                     address_html?: T;
+                    iframe?: T;
                   };
               direction?: T;
               id?: T;
