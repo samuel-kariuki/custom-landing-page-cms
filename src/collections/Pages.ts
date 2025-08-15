@@ -134,7 +134,7 @@ export const Page: CollectionConfig = {
                 {
                     type: 'select',
                     name: 'footer style',
-                    options: ['default', 'tiny'],
+                    options: ['default', 'tiny','large'],
                     defaultValue: 'default',
                     admin: {
                         width: '33%',
